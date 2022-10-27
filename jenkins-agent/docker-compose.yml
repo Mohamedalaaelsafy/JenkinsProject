@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  jenkins:
+    image: jenkins-agent:latest
+    env_file:
+      - MasterPubKey.env
+    privileged: true
+    user: root
+    container_name: jenkins-agent
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/bin/docker:/usr/local/bin/docker
+    restart: on-failure
